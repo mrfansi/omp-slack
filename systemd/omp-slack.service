@@ -1,0 +1,17 @@
+[Unit]
+Description=omp Slack bridge
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+WorkingDirectory=/home/mrfansi/Github/mrfansi/omp-slack
+Environment=PATH=/home/mrfansi/.local/bin:/home/mrfansi/.nvm/versions/node/v24.21.0/bin:/home/mrfansi/.bun/bin:/home/mrfansi/.cargo/bin:/usr/local/bin:/usr/bin:/bin
+ExecStart=/home/mrfansi/.nvm/versions/node/v24.21.0/bin/node /home/mrfansi/Github/mrfansi/omp-slack/src/index.js
+Restart=on-failure
+RestartSec=5
+# 2 = tokens missing, 3 = tokens rejected: run /slack token first
+RestartPreventExitStatus=2 3
+
+[Install]
+WantedBy=default.target

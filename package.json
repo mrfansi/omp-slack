@@ -1,0 +1,62 @@
+{
+  "name": "omp-slack",
+  "version": "1.0.0",
+  "description": "Slack bridge for omp (Bolt Socket Mode + omp --mode rpc-ui)",
+  "private": true,
+  "scripts": {
+    "start": "node src/index.js"
+  },
+  "type": "module",
+  "omp": {
+    "name": "Slack",
+    "description": "Chat with omp from Slack; /slack manages the bridge service",
+    "extensions": [
+      "src/extension.js"
+    ],
+    "settings": {
+      "allowedUsers": {
+        "type": "string",
+        "description": "Slack member IDs allowed to command the agent, comma-separated (Slack profile → ⋮ → Copy member ID, e.g. U012AB3CD)",
+        "default": ""
+      },
+      "cwd": {
+        "type": "string",
+        "description": "Default project directory; changing it switches the bridge there with a fresh session (!cd does the same from Slack). Empty = home",
+        "default": ""
+      },
+      "model": {
+        "type": "string",
+        "description": "Model override as provider/id, e.g. anthropic/claude-sonnet-5 (empty = your omp default role)",
+        "default": ""
+      },
+      "thinking": {
+        "type": "enum",
+        "description": "Agent thinking level",
+        "values": [
+          "default",
+          "off",
+          "minimal",
+          "low",
+          "medium",
+          "high",
+          "xhigh",
+          "max"
+        ],
+        "default": "default"
+      },
+      "progress": {
+        "type": "enum",
+        "description": "Show tool steps in one live-edited Slack message per turn",
+        "values": [
+          "tools",
+          "off"
+        ],
+        "default": "tools"
+      }
+    }
+  },
+  "dependencies": {
+    "@slack/bolt": "^5.1.0",
+    "@slack/web-api": "^8.1.1"
+  }
+}
