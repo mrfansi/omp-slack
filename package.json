@@ -2,6 +2,8 @@
   "name": "omp-slack",
   "version": "1.0.0",
   "description": "Slack bridge for omp (Bolt Socket Mode + omp --mode rpc-ui)",
+  "license": "MIT",
+  "repository": "github:mrfansi/omp-slack",
   "private": true,
   "scripts": {
     "start": "node src/index.js"
